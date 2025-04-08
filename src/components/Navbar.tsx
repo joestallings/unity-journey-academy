@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { Menu, User, LogIn, BookOpen } from 'lucide-react';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,6 +53,7 @@ const Navbar: React.FC = () => {
           </nav>
           
           <div className="flex items-center space-x-3">
+            <ThemeToggle />
             <Button variant="outline" size="sm" className="flex items-center gap-2">
               <LogIn className="h-4 w-4" />
               <span>Log In</span>
@@ -63,7 +65,8 @@ const Navbar: React.FC = () => {
           </div>
         </div>
         
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">
