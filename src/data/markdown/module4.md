@@ -1,5 +1,4 @@
 
-export const module4Content = `
 # 3D Game Development
 
 This module covers the fundamentals of creating 3D games in Unity, from working with 3D models to implementing complex navigation systems.
@@ -43,14 +42,14 @@ Implement realistic lighting for your 3D scenes:
 
 Add realistic physics to your 3D objects:
 
-\`\`\`csharp
+```csharp
 // Basic 3D physics setup
 Rigidbody rb = gameObject.AddComponent<Rigidbody>();
 rb.mass = 2.0f;
 rb.drag = 0.5f;
 rb.angularDrag = 0.05f;
 rb.useGravity = true;
-\`\`\`
+```
 
 ## Navigation in 3D Space
 
@@ -63,7 +62,7 @@ rb.useGravity = true;
 
 Implement player controls for 3D characters:
 
-\`\`\`csharp
+```csharp
 void Update()
 {
     float horizontal = Input.GetAxis("Horizontal");
@@ -79,7 +78,7 @@ void Update()
         controller.Move(direction * speed * Time.deltaTime);
     }
 }
-\`\`\`
+```
 
 ## 3D Cameras
 
@@ -87,4 +86,3 @@ void Update()
 * First-person and third-person cameras
 * Cinemachine implementation for 3D
 * Camera transitions and effects
-`;

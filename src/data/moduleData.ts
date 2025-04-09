@@ -1,16 +1,4 @@
 
-import { module0Content } from "./modules/module0";
-import { module1Content } from "./modules/module1";
-import { module2Content } from "./modules/module2";
-import { module3Content } from "./modules/module3";
-import { module4Content } from "./modules/module4";
-import { module5Content } from "./modules/module5";
-import { module6Content } from "./modules/module6";
-import { module7Content } from "./modules/module7";
-import { module8Content } from "./modules/module8";
-import { module9Content } from "./modules/module9";
-import { module10Content } from "./modules/module10";
-
 export interface Module {
   id: number;
   title: string;
@@ -34,8 +22,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1596863795217-78ef54b557b7?q=80&w=2066&auto=format&fit=crop",
     progress: 100,
     isCompleted: true,
-    isLocked: false,
-    content: module0Content
+    isLocked: false
   },
   {
     id: 1,
@@ -46,8 +33,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=2081&auto=format&fit=crop",
     progress: 75,
     isCompleted: false,
-    isLocked: false,
-    content: module1Content
+    isLocked: false
   },
   {
     id: 2,
@@ -58,8 +44,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop",
     progress: 40,
     isCompleted: false,
-    isLocked: false,
-    content: module2Content
+    isLocked: false
   },
   {
     id: 3,
@@ -70,8 +55,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
     progress: 0,
     isCompleted: false,
-    isLocked: false,
-    content: module3Content
+    isLocked: false
   },
   {
     id: 4,
@@ -82,8 +66,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1626544827763-d516dce335e2?q=80&w=2070&auto=format&fit=crop",
     progress: 0,
     isCompleted: false,
-    isLocked: true,
-    content: module4Content
+    isLocked: true
   },
   {
     id: 5,
@@ -94,8 +77,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1627856014754-2062a3264f95?q=80&w=1974&auto=format&fit=crop",
     progress: 0,
     isCompleted: false,
-    isLocked: true,
-    content: module5Content
+    isLocked: true
   },
   {
     id: 6,
@@ -106,8 +88,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=2070&auto=format&fit=crop",
     progress: 0,
     isCompleted: false,
-    isLocked: true,
-    content: module6Content
+    isLocked: true
   },
   {
     id: 7,
@@ -118,8 +99,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1582121427803-c78a4ed6a748?q=80&w=2070&auto=format&fit=crop",
     progress: 0,
     isCompleted: false,
-    isLocked: true,
-    content: module7Content
+    isLocked: true
   },
   {
     id: 8,
@@ -130,8 +110,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1494537176433-7a3c4ef2046f?q=80&w=2072&auto=format&fit=crop",
     progress: 0,
     isCompleted: false,
-    isLocked: true,
-    content: module8Content
+    isLocked: true
   },
   {
     id: 9,
@@ -142,8 +121,7 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1947&auto=format&fit=crop",
     progress: 0,
     isCompleted: false,
-    isLocked: true,
-    content: module9Content
+    isLocked: true
   },
   {
     id: 10,
@@ -154,11 +132,30 @@ export const modules: Module[] = [
     image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=2069&auto=format&fit=crop",
     progress: 0,
     isCompleted: false,
-    isLocked: true,
-    content: module10Content
+    isLocked: true
   },
 ];
 
-export const getModuleById = (id: number): Module | undefined => {
-  return modules.find(module => module.id === id);
+export const getModuleById = async (id: number): Promise<Module | undefined> => {
+  const module = modules.find(m => m.id === id);
+
+  if (!module) {
+    return undefined;
+  }
+
+  // Clone the module object
+  const moduleWithContent = { ...module };
+
+  try {
+    // Load the markdown content dynamically
+    const response = await fetch(`/src/data/markdown/module${id}.md`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch module content: ${response.status}`);
+    }
+    moduleWithContent.content = await response.text();
+    return moduleWithContent;
+  } catch (error) {
+    console.error(`Error loading module content for id ${id}:`, error);
+    return module; // Return module without content in case of error
+  }
 };

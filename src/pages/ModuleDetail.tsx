@@ -17,27 +17,77 @@ const ModuleDetail = () => {
   const { toast } = useToast();
   
   const moduleId = id ? parseInt(id) : -1;
-  const module = getModuleById(moduleId);
   
-  const [nextModule, setNextModule] = useState(getModuleById(moduleId + 1));
-  const [prevModule, setPrevModule] = useState(getModuleById(moduleId - 1));
+  const [module, setModule] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [nextModule, setNextModule] = useState<any>(null);
+  const [prevModule, setPrevModule] = useState<any>(null);
   
   useEffect(() => {
-    if (!module) {
-      navigate('/modules');
-      toast({
-        title: "Module not found",
-        description: "The requested module could not be found.",
-        variant: "destructive"
-      });
-    }
+    const loadModule = async () => {
+      setLoading(true);
+      try {
+        // Load the current module with content
+        const moduleData = await getModuleById(moduleId);
+        
+        if (!moduleData) {
+          navigate('/modules');
+          toast({
+            title: "Module not found",
+            description: "The requested module could not be found.",
+            variant: "destructive"
+          });
+          return;
+        }
+        
+        setModule(moduleData);
+        
+        // Load neighboring modules (without content)
+        const nextIndex = moduleId + 1;
+        const prevIndex = moduleId - 1;
+        
+        if (nextIndex < modules.length) {
+          const next = modules.find(m => m.id === nextIndex);
+          if (next) setNextModule(next);
+        }
+        
+        if (prevIndex >= 0) {
+          const prev = modules.find(m => m.id === prevIndex);
+          if (prev) setPrevModule(prev);
+        }
+      } catch (error) {
+        console.error("Error loading module:", error);
+        toast({
+          title: "Failed to load module",
+          description: "There was a problem loading the module content.",
+          variant: "destructive"
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
     
-    setNextModule(getModuleById(moduleId + 1));
-    setPrevModule(getModuleById(moduleId - 1));
-    
+    loadModule();
     // Scroll to top when module changes
     window.scrollTo(0, 0);
-  }, [module, moduleId, navigate, toast]);
+  }, [moduleId, navigate, toast]);
+  
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <div className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin inline-block w-8 h-8 border-4 border-current border-t-transparent text-primary rounded-full" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+            <p className="mt-4 text-muted-foreground">Loading module content...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
   
   if (!module) return null;
   

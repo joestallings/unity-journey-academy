@@ -1,5 +1,4 @@
 
-export const module9Content = `
 # Performance Optimization
 
 This module covers techniques to optimize your Unity games for various platforms and hardware configurations.
@@ -17,7 +16,7 @@ Learn how to diagnose performance issues:
 
 Improve code and logic performance:
 
-\`\`\`csharp
+```csharp
 // Before optimization
 void Update()
 {
@@ -42,7 +41,7 @@ void Update()
         enemy.CheckPlayerDistance(player.position);
     }
 }
-\`\`\`
+```
 
 ## GPU Optimization
 
@@ -66,7 +65,7 @@ Prevent memory issues in your game:
 
 Specific techniques for mobile platforms:
 
-\`\`\`csharp
+```csharp
 public class MobileOptimizer : MonoBehaviour
 {
     [SerializeField] private int targetFrameRate = 60;
@@ -88,7 +87,7 @@ public class MobileOptimizer : MonoBehaviour
         }
     }
 }
-\`\`\`
+```
 
 ## Build Size Optimization
 
@@ -105,4 +104,3 @@ Reduce your game's installation size:
 * PC scalability options
 * VR performance requirements
 * Cloud streaming optimizations
-`;

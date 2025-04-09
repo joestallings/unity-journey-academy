@@ -1,5 +1,4 @@
 
-export const module6Content = `
 # UI Systems
 
 This module covers Unity's UI systems and how to create effective user interfaces for your games.
@@ -26,7 +25,7 @@ Learn how to create interfaces that work across different screen sizes:
 
 Creating functional UI controls:
 
-\`\`\`csharp
+```csharp
 // Button click handler
 public void OnStartButtonClick()
 {
@@ -44,7 +43,7 @@ IEnumerator LoadGameWithDelay(float delay)
     // Load game scene
     SceneManager.LoadScene("GameplayScene");
 }
-\`\`\`
+```
 
 ## Menus and Navigation
 
@@ -73,7 +72,7 @@ Implementing effective heads-up displays:
 
 Connect your UI to game data:
 
-\`\`\`csharp
+```csharp
 void UpdatePlayerStats(PlayerStats stats)
 {
     // Update UI elements based on player stats
@@ -82,7 +81,7 @@ void UpdatePlayerStats(PlayerStats stats)
     experienceText.text = $"XP: {stats.currentXP}/{stats.xpToNextLevel}";
     levelText.text = $"Level {stats.playerLevel}";
 }
-\`\`\`
+```
 
 ## Accessibility Considerations
 
@@ -90,4 +89,3 @@ void UpdatePlayerStats(PlayerStats stats)
 * Color blindness support
 * Control remapping
 * Audio cues and text alternatives
-`;

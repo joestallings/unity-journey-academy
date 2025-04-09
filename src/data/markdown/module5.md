@@ -1,5 +1,4 @@
 
-export const module5Content = `
 # Physics and Interaction
 
 This module explores the Unity physics engine and how to create interactive gameplay elements.
@@ -24,7 +23,7 @@ Understanding the core physics components:
 
 Create realistic movement using physics:
 
-\`\`\`csharp
+```csharp
 void FixedUpdate()
 {
     // Getting input
@@ -43,7 +42,7 @@ void FixedUpdate()
         rigidBody.velocity = rigidBody.velocity.normalized * maxSpeed;
     }
 }
-\`\`\`
+```
 
 ## Joints and Constraints
 
@@ -57,7 +56,7 @@ void FixedUpdate()
 
 Implementing interactable game elements:
 
-\`\`\`csharp
+```csharp
 void OnTriggerEnter(Collider other)
 {
     if (other.CompareTag("Player"))
@@ -82,7 +81,7 @@ void Interact()
     // Interaction logic here...
     Debug.Log("Player interacted with object!");
 }
-\`\`\`
+```
 
 ## Ragdoll Physics
 
@@ -97,4 +96,3 @@ void Interact()
 * Particle effects triggered by physics
 * Sound effects based on collision force
 * Surface-specific responses
-`;

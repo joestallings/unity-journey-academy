@@ -1,5 +1,4 @@
 
-export const module10Content = `
 # Course Conclusion
 
 Congratulations on completing the Unity Journey Academy! This final module recaps what you've learned and provides guidance for your continued growth as a Unity developer.
@@ -29,7 +28,7 @@ Guidelines for creating your first complete Unity project:
 
 ## Development Best Practices
 
-\`\`\`csharp
+```csharp
 // Example of well-structured component code
 using UnityEngine;
 
@@ -59,7 +58,7 @@ public class PlayerController : MonoBehaviour
     
     // Further implementation...
 }
-\`\`\`
+```
 
 ## Next Steps in Your Unity Journey
 
@@ -89,4 +88,3 @@ Remember that game development is both an art and a science. As you continue you
 * Continuously learning and adapting to new technologies
 
 We wish you the best of luck in your Unity development career!
-`;

@@ -1,5 +1,4 @@
 
-export const module7Content = `
 # Audio Implementation
 
 This module covers audio systems in Unity and techniques for creating an immersive sound experience.
@@ -17,7 +16,7 @@ Understanding the core audio components:
 
 Implementing music systems for your game:
 
-\`\`\`csharp
+```csharp
 public class MusicManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] musicTracks;
@@ -44,7 +43,7 @@ public class MusicManager : MonoBehaviour
         // ...
     }
 }
-\`\`\`
+```
 
 ## Sound Effects
 
@@ -66,7 +65,7 @@ Managing sound effects in your game:
 
 Creating dynamic audio that responds to gameplay:
 
-\`\`\`csharp
+```csharp
 void UpdateCombatMusic(int enemyCount, float playerHealth)
 {
     // Adjust music intensity based on combat situation
@@ -83,7 +82,7 @@ void UpdateCombatMusic(int enemyCount, float playerHealth)
         highIntensityStingerPlayed = true;
     }
 }
-\`\`\`
+```
 
 ## Voice Acting Integration
 
@@ -91,4 +90,3 @@ void UpdateCombatMusic(int enemyCount, float playerHealth)
 * Subtitles and localization support
 * Voice asset management
 * Lip-syncing techniques
-`;

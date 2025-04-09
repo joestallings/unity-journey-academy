@@ -1,5 +1,4 @@
 
-export const module2Content = `
 # Scripting in C#
 
 C# is the primary programming language for Unity development. In this module, you'll learn the fundamentals of C# and how to use it within Unity.
@@ -17,7 +16,7 @@ Let's start with the core concepts of C#:
 
 Understanding the Unity script lifecycle is crucial:
 
-\`\`\`csharp
+```csharp
 using UnityEngine;
 
 public class ExampleScript : MonoBehaviour
@@ -34,13 +33,13 @@ public class ExampleScript : MonoBehaviour
         Debug.Log("Frame update: " + Time.deltaTime);
     }
 }
-\`\`\`
+```
 
 ## Input Handling
 
 Learn how to respond to player input in your games:
 
-\`\`\`csharp
+```csharp
 void Update()
 {
     // Keyboard input
@@ -60,13 +59,13 @@ void Update()
     float vertical = Input.GetAxis("Vertical");
     Move(horizontal, vertical);
 }
-\`\`\`
+```
 
 ## Working with Components
 
 Access and modify components on GameObjects:
 
-\`\`\`csharp
+```csharp
 // Get a component on this GameObject
 Rigidbody rb = GetComponent<Rigidbody>();
 rb.AddForce(Vector3.up * 10f);
@@ -75,5 +74,4 @@ rb.AddForce(Vector3.up * 10f);
 GameObject player = GameObject.Find("Player");
 PlayerHealth health = player.GetComponent<PlayerHealth>();
 health.TakeDamage(10);
-\`\`\`
-`;
+```

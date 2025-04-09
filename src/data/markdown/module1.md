@@ -1,5 +1,4 @@
 
-export const module1Content = `
 # Unity Fundamentals
 
 In this module, we'll cover the core concepts and components that make up the Unity engine.
@@ -40,4 +39,3 @@ Understanding how to work with scenes is essential:
 * Saving and loading scenes
 * Building scene hierarchies
 * Using multiple scenes in your game
-`;

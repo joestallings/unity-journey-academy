@@ -1,5 +1,4 @@
 
-export const module0Content = `
 # Introduction to Unity Journey Academy
 
 Welcome to the Unity Journey Academy! This introductory module will help you prepare for your learning adventure.
@@ -32,4 +31,3 @@ The Unity interface consists of several key windows:
 ## Your Learning Path
 
 This course consists of 9 main modules plus this introduction and a conclusion. Each module builds upon the previous ones, creating a comprehensive learning journey.
-`;

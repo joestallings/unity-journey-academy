@@ -1,5 +1,4 @@
 
-export const module8Content = `
 # Advanced Graphics
 
 This module covers advanced visual techniques to enhance the look and feel of your Unity projects.
@@ -17,7 +16,7 @@ Understanding shader development in Unity:
 
 Create your own visual effects with custom shaders:
 
-\`\`\`hlsl
+```hlsl
 Shader "Custom/WaterShader"
 {
     Properties
@@ -46,7 +45,7 @@ Shader "Custom/WaterShader"
         }
     }
 }
-\`\`\`
+```
 
 ## Particle Systems
 
@@ -77,7 +76,7 @@ Enhance your camera output:
 
 Using Unity's VFX Graph system:
 
-\`\`\`csharp
+```csharp
 public class VFXController : MonoBehaviour
 {
     [SerializeField] private VisualEffect impactVFX;
@@ -95,7 +94,7 @@ public class VFXController : MonoBehaviour
         Destroy(instance.gameObject, lifetime);
     }
 }
-\`\`\`
+```
 
 ## Cinematic Effects
 
@@ -110,4 +109,3 @@ public class VFXController : MonoBehaviour
 * Volumetric fog and atmospheric effects
 * Terrain shading and blending
 * Water rendering techniques
-`;

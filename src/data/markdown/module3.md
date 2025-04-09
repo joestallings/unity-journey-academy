@@ -1,5 +1,4 @@
 
-export const module3Content = `
 # 2D Game Development
 
 In this module, we'll explore the essential components of creating 2D games with Unity.
@@ -34,13 +33,13 @@ Learn how to bring your 2D characters and objects to life:
 
 Implement realistic physics for your 2D games:
 
-\`\`\`csharp
+```csharp
 // Adding a Rigidbody2D to a sprite
 Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
 rb.gravityScale = 1.0f;
 rb.mass = 1.0f;
 rb.drag = 0.05f;
-\`\`\`
+```
 
 ## 2D Colliders and Triggers
 
@@ -54,7 +53,7 @@ rb.drag = 0.05f;
 
 Implement responsive movement for 2D characters:
 
-\`\`\`csharp
+```csharp
 void Update() 
 {
     // Simple 2D movement
@@ -67,7 +66,7 @@ void Update()
         rigidbody2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
     }
 }
-\`\`\`
+```
 
 ## 2D Camera Systems
 
@@ -75,4 +74,3 @@ void Update()
 * Camera follow scripts
 * Implementing parallax scrolling
 * Using Cinemachine for 2D cameras
-`;
