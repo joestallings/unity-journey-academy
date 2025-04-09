@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -145,8 +144,17 @@
   @apply bg-muted px-1.5 py-0.5 rounded text-sm;
 }
 
+.markdown-content code.inline-code {
+  @apply bg-muted px-1.5 py-0.5 rounded text-sm;
+}
+
 .markdown-content pre {
   @apply bg-muted p-4 rounded-lg my-4 overflow-x-auto;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent p-0 text-sm block;
+  white-space: pre;
 }
 
 .markdown-content a {
