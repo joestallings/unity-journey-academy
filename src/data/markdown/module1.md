@@ -1,41 +1,571 @@
-
-# Unity Fundamentals
-
-In this module, we'll cover the core concepts and components that make up the Unity engine.
-
-## GameObjects and Components
-
-Unity uses a component-based architecture where everything in your game is a GameObject with various Components attached.
-
-### Key Concepts:
-
-* **GameObjects**: The base objects in your scene
-* **Components**: Building blocks that add functionality
-* **Transform Component**: Controls position, rotation, and scale
-
-## The Unity Editor Interface
-
-The Unity Editor is where you'll spend most of your development time. Let's explore its main sections:
-
-* Scene view - For building your game visually
-* Game view - For testing how your game looks to players
-* Hierarchy panel - Lists all GameObjects in the current scene
-* Project panel - Shows all assets in your project
-* Inspector - Displays and allows editing of selected object properties
-
-## Working with Prefabs
-
-Prefabs are reusable GameObject templates that allow you to:
-
-1. Create multiple instances of complex objects
-2. Update all instances by modifying the original prefab
-3. Override specific properties on individual instances
-
-## Scene Management
-
-Understanding how to work with scenes is essential:
-
-* Creating new scenes
-* Saving and loading scenes
-* Building scene hierarchies
-* Using multiple scenes in your game
+# Unit 1: Unity Foundations & The Editor
+## Instructional Content
+### 1. Introduction to Unity Hub
+Unity Hub serves as the central management tool for your Unity development environment. It provides a streamlined interface for managing Unity installations, projects, and templates.
+#### Key Features of Unity Hub:
+**Installation Management:**
+Unity Hub allows you to install and manage multiple versions of the Unity Editor simultaneously. This is particularly valuable when working on different projects that may require specific Unity versions for compatibility.
+```
+Unity Hub > Installs > Add > [Select Version]
+```
+You can install the latest Long-Term Support (LTS) version, which is recommended for production projects due to its stability, or the latest Tech Stream version, which includes cutting-edge features but may have more frequent updates and potential instabilities.
+**Project Management:**
+Unity Hub provides a centralized location to create, open, and organize your Unity projects.
+```
+Unity Hub > Projects > New > [Select Template]
+```
+The Projects tab displays all your recent projects, allowing you to:
+- Open existing projects
+- Create new projects
+- Sort projects by name, platform, or date
+- Add projects from disk that weren't created through the Hub
+**Templates:**
+When creating a new project, Unity Hub offers various templates to jumpstart your development:
+- 2D
+- 3D
+- Universal Render Pipeline (URP)
+- High Definition Render Pipeline (HDRP)
+- Mobile
+- VR
+- AR
+- And more specialized templates
+**Learn Tab:**
+Unity Hub includes a Learn tab with tutorials and sample projects to help you get started or expand your knowledge of specific Unity features.
+### 2. Creating a New 3D URP/Standard Project
+Let's walk through the process of creating a new Unity project using either the Standard 3D template or the Universal Render Pipeline (URP) template.
+#### Standard 3D Project:
+1. Open Unity Hub
+2. Click "New Project"
+3. Select "3D" template
+4. Configure project settings:
+   - Project Name: "UnityAccelerator_Course"
+   - Location: Choose a directory on your system
+5. Click "Create Project"
+#### Universal Render Pipeline (URP) Project:
+1. Open Unity Hub
+2. Click "New Project"
+3. Select "3D (URP)" template
+4. Configure project settings:
+   - Project Name: "UnityAccelerator_Course_URP"
+   - Location: Choose a directory on your system
+5. Click "Create Project"
+#### Key Differences Between Standard and URP:
+**Standard Render Pipeline:**
+- Simpler setup
+- Fewer graphics features
+- Lower performance overhead
+- Easier to learn for beginners
+**Universal Render Pipeline (URP):**
+- More modern rendering architecture
+- Better performance on a wider range of platforms
+- More advanced graphics features (post-processing, lighting)
+- Requires some additional setup
+- Industry standard for most new projects
+For this course, either option is suitable, but URP represents the direction Unity is moving toward for most projects. If you're unsure, the Standard 3D template is slightly simpler to start with, and many concepts transfer directly to URP later.
+### 3. Project Folder Structure Breakdown
+When you create a new Unity project, several folders are automatically generated. Understanding this structure is crucial for organizing your project effectively.
+#### Core Folders:
+**Assets:**
+This is the primary folder where all your project files will be stored. Everything you import or create for your project should be organized within this folder.
+```
+Assets/
+  ├── Scenes/         (Unity scene files)
+  ├── Scripts/        (C# script files)
+  ├── Models/         (3D models)
+  ├── Materials/      (Material assets)
+  ├── Textures/       (Image files)
+  ├── Prefabs/        (Reusable GameObject templates)
+  ├── Animations/     (Animation clips and controllers)
+  └── Audio/          (Sound files)
+```
+The subfolders shown above are a common organization pattern, but Unity doesn't create them automatically. You'll need to create this structure yourself as your project grows.
+**Library:**
+This folder contains cached data generated by Unity. It includes imported assets in their Unity-ready format. You should never modify this folder manually, and it doesn't need to be included in version control systems.
+**Packages:**
+Contains package data for the Unity Package Manager. This includes both built-in packages and those you install from the Package Manager.
+**ProjectSettings:**
+Contains all the settings for your project, including input mappings, quality settings, physics settings, etc. These files are typically small text files that should be included in version control.
+**Temp:**
+Temporary files generated during the Unity Editor session. These are automatically cleaned up and don't need to be included in version control.
+**Logs:**
+Contains log files generated by the Unity Editor, useful for debugging.
+**UserSettings:**
+Contains user-specific settings that don't need to be shared across a team.
+#### Best Practices for Project Organization:
+1. **Create a clear folder structure** within Assets from the beginning
+2. **Use descriptive names** for all assets
+3. **Group related assets** together
+4. **Consider using asset labels** for cross-category organization
+5. **Keep the root Assets folder clean** by using subfolders
+6. **Use consistent naming conventions** (e.g., PascalCase for folders, snake_case for files)
+### 4. Deep Dive into Editor Windows
+The Unity Editor interface consists of several dockable windows, each serving a specific purpose in the development workflow.
+#### Scene View:
+This is where you construct and edit your 3D or 2D scenes. It provides a visual representation of your game world during development.
+Key features:
+- **Navigation tools**: Pan, orbit, and zoom
+- **Transform tools**: Move, rotate, and scale objects
+- **Scene Gizmos**: Visual helpers for orientation and positioning
+- **View options**: Wireframe, shaded, textured, etc.
+- **Camera preview**: See what your game camera sees
+#### Game View:
+Shows how your game will look when played. This view renders the scene through your active cameras.
+Key features:
+- **Aspect ratio selection**: Test different screen sizes
+- **Resolution settings**: Test performance at different resolutions
+- **Stats overlay**: FPS counter and performance metrics
+- **Play, pause, and step controls**: Test gameplay
+#### Hierarchy Window:
+Displays all GameObjects in the current scene in a hierarchical tree structure.
+Key features:
+- **Parent-child relationships**: Objects can be nested to create hierarchies
+- **Selection**: Click to select objects in the scene
+- **Organization**: Group related objects under empty parent objects
+- **Search**: Filter objects by name
+- **Active/Inactive toggle**: Enable/disable objects
+#### Project Window:
+Displays all assets in your project's Assets folder.
+Key features:
+- **Folder navigation**: Browse through your project structure
+- **Search**: Find assets by name or type
+- **Favorites**: Pin frequently used folders
+- **Create menu**: Add new assets and folders
+- **Import**: Bring external files into your project
+#### Inspector Window:
+Displays and allows editing of all properties of the currently selected GameObject or asset.
+Key features:
+- **Component viewing/editing**: Adjust parameters of attached components
+- **Add Component button**: Attach new functionality to GameObjects
+- **Asset properties**: Configure import settings for assets
+- **Debug mode**: View non-serialized fields during play mode
+- **Lock button**: Keep inspecting the same object while selecting others
+#### Console Window:
+Displays messages, warnings, and errors from your scripts and the Unity Editor.
+Key features:
+- **Log messages**: Output from Debug.Log() calls
+- **Warnings**: Potential issues that don't prevent execution
+- **Errors**: Problems that may prevent proper execution
+- **Stack traces**: See where errors occurred in your code
+- **Filters**: Show/hide different message types
+- **Clear button**: Remove all current messages
+#### Additional Useful Windows:
+**Animation Window:**
+Create and edit animation clips directly in the editor.
+**Profiler:**
+Analyze performance metrics to optimize your game.
+**Timeline:**
+Create cinematic content, gameplay sequences, and complex animations.
+**Lighting:**
+Configure and bake lighting for your scenes.
+**Navigation:**
+Set up and configure pathfinding for AI characters.
+### 5. Scene View Navigation
+Efficient navigation in the Scene view is essential for productive development in Unity.
+#### Mouse Controls:
+**Orbit (Rotate View):**
+- Hold Alt + Left Mouse Button and drag
+- Or hold Middle Mouse Button and drag
+**Pan:**
+- Hold Alt + Middle Mouse Button and drag
+- Or hold Middle Mouse Button + Shift and drag
+**Zoom:**
+- Scroll the Mouse Wheel
+- Or hold Alt + Right Mouse Button and drag up/down
+#### Keyboard Shortcuts:
+**Focus on Selection:**
+- Press F when an object is selected to frame it in the view
+**Perspective/Isometric Toggle:**
+- Press 5 on the numpad to switch between perspective and isometric views
+**View from Specific Angles:**
+- Numpad 1: Front view
+- Numpad 3: Right view
+- Numpad 7: Top view
+- Add Ctrl to see from the opposite direction (back, left, bottom)
+**Camera Alignment:**
+- Ctrl + Shift + F: Align view with the selected object's orientation
+#### Scene Gizmos:
+In the top-right corner of the Scene view, you'll find the Scene Gizmo, which helps with orientation and quick view changes.
+- **Colored axes (RGB = XYZ)**: Click an axis to view along it
+- **Cube faces**: Click a face to view from that direction
+- **Center cube**: Toggle between perspective and isometric views
+#### Navigation Settings:
+You can customize navigation speed and behavior in:
+```
+Edit > Preferences > Scene View
+```
+Adjustable settings include:
+- Look around speed
+- Fly around speed
+- Mouse wheel speed
+- Invert Y axis
+#### Flythrough Mode:
+For navigating large scenes:
+- Hold right mouse button
+- Use WASD keys to move
+- Move mouse to look around
+- Hold Shift to move faster
+This "first-person shooter" style navigation is particularly useful in large environments.
+### 6. GameObjects: The Fundamental Entities
+In Unity, everything in your scene is a GameObject. Understanding this concept is fundamental to working effectively in Unity.
+#### What is a GameObject?
+A GameObject is a container that can hold components, which define its behavior and properties. By itself, a GameObject does nothing; it's the components attached to it that give it functionality.
+Every GameObject automatically has a Transform component, which defines its position, rotation, and scale in the 3D world.
+#### Creating GameObjects:
+**From the Menu:**
+```
+GameObject > Create Empty
+GameObject > 3D Object > Cube (or other primitives)
+```
+**By Right-Clicking in the Hierarchy:**
+```
+Right-click > Create Empty
+Right-click > 3D Object > Cube (or other primitives)
+```
+**By Duplicating:**
+```
+Select an existing GameObject > Ctrl+D (or Cmd+D on Mac)
+```
+#### GameObject Properties:
+In the Inspector, every GameObject has these basic properties:
+- **Name**: Identifier in the Hierarchy
+- **Tag**: Category for quick identification in scripts
+- **Layer**: Used for rendering order, physics collisions, and raycasting
+- **Static flags**: Optimization options for objects that don't move
+- **Active checkbox**: Enables/disables the GameObject
+#### Parent-Child Relationships:
+GameObjects can be nested to create hierarchies. This is useful for:
+- **Organization**: Grouping related objects
+- **Relative transformations**: Children inherit their parent's position, rotation, and scale
+- **Collective operations**: Enable/disable multiple objects at once
+To create a parent-child relationship:
+- Drag a GameObject onto another in the Hierarchy
+- Or use Ctrl+Alt+P to parent the selected object to the previously selected object
+#### Empty GameObjects:
+Empty GameObjects have only a Transform component and no visible representation in the scene. They're useful for:
+- **Organization**: Acting as folders in the Hierarchy
+- **Spawn points**: Marking locations in the scene
+- **Script containers**: Holding scripts that don't need a visual representation
+- **Pivot points**: Creating custom rotation centers for groups of objects
+### 7. Components: Building Blocks of Functionality
+Components are the functional building blocks that give GameObjects their behavior and properties.
+#### Core Concepts:
+- Every GameObject has at least one component: Transform
+- Components are modular and reusable
+- Multiple components can be attached to a single GameObject
+- Components can interact with each other
+- Unity includes many built-in components, and you can create custom ones with scripts
+#### Adding Components:
+**Via Inspector:**
+```
+Select GameObject > Click "Add Component" in Inspector > Search or browse categories
+```
+**Via Menu:**
+```
+Component > Physics > Rigidbody (for example)
+```
+**Via Script:**
+```csharp
+gameObject.AddComponent<Rigidbody>();
+```
+#### Common Built-in Components:
+**Transform:**
+- Present on all GameObjects
+- Defines position, rotation, and scale
+- Manages parent-child relationships
+**Mesh Filter & Mesh Renderer:**
+- Work together to display 3D models
+- Mesh Filter: References the 3D model data
+- Mesh Renderer: Handles how the mesh is rendered (materials, shadows, etc.)
+**Colliders:**
+- Define physical shape for collisions
+- Types include Box, Sphere, Capsule, Mesh Collider
+- Can be triggers (detect overlaps without physical collision)
+**Rigidbody:**
+- Enables physics simulation
+- Adds mass, gravity, and forces
+- Controls how objects interact physically
+**Camera:**
+- Defines a viewpoint for rendering the scene
+- Controls field of view, clipping planes, and rendering settings
+**Light:**
+- Illuminates the scene
+- Types include Directional, Point, Spot, and Area lights
+**Audio Source & Audio Listener:**
+- Audio Source: Plays sounds
+- Audio Listener: Receives sounds (typically attached to the main camera)
+**Animator:**
+- Controls animations
+- Works with Animation Controllers
+**Scripts:**
+- Custom components written in C#
+- Can access and modify other components
+- Define custom behavior
+#### Component Communication:
+Components on the same GameObject can communicate through:
+```csharp
+// Get a reference to another component on the same GameObject
+Rigidbody rb = GetComponent<Rigidbody>();
+// Get a component from a child GameObject
+Light childLight = GetComponentInChildren<Light>();
+// Get a component from a parent GameObject
+Canvas parentCanvas = GetComponentInParent<Canvas>();
+```
+Components on different GameObjects can communicate through:
+```csharp
+// Find a GameObject by name and get its component
+GameObject player = GameObject.Find("Player");
+PlayerController controller = player.GetComponent<PlayerController>();
+// Find a GameObject by tag and get its component
+GameObject mainCamera = GameObject.FindWithTag("MainCamera");
+Camera cam = mainCamera.GetComponent<Camera>();
+```
+### 8. Scene Setup: Creating and Manipulating Primitives
+Unity provides primitive 3D shapes that are useful for prototyping, creating simple objects, or building more complex structures.
+#### Available Primitives:
+- **Cube**: Basic building block, useful for walls, platforms, etc.
+- **Sphere**: Useful for planets, balls, or rounded objects
+- **Capsule**: Good for character controllers or pills
+- **Cylinder**: Useful for pillars, wheels, or containers
+- **Plane**: Flat surface, often used for ground
+- **Quad**: 2D rectangle, useful for UI elements or simple sprites
+- **Empty**: No visible geometry, useful as a container or marker
+#### Creating Primitives:
+```
+GameObject > 3D Object > [Select Primitive]
+```
+Or right-click in the Hierarchy:
+```
+Right-click > 3D Object > [Select Primitive]
+```
+#### Manipulating Transforms:
+**Using the Transform Tools:**
+The toolbar at the top of the editor contains three main transform tools:
+- **Move Tool (W)**: Translate objects along axes
+- **Rotate Tool (E)**: Rotate objects around axes
+- **Scale Tool (R)**: Resize objects along axes
+**Transform Gizmos:**
+When a GameObject is selected, colored arrows appear in the Scene view:
+- **Red Arrow (X-axis)**: Move/rotate/scale along the X-axis
+- **Green Arrow (Y-axis)**: Move/rotate/scale along the Y-axis
+- **Blue Arrow (Z-axis)**: Move/rotate/scale along the Z-axis
+**Precise Transformations:**
+For precise control, use the Transform component in the Inspector:
+- Enter exact values for Position, Rotation, and Scale
+- Reset to default values by right-clicking the Transform component and selecting "Reset"
+**Snapping:**
+Hold Ctrl (or Cmd on Mac) while moving, rotating, or scaling to snap to grid or angle increments.
+Configure snapping settings in:
+```
+Edit > Snap Settings
+```
+#### Materials and Colors:
+To add color to primitives, you need to create and apply materials:
+1. In the Project window, right-click > Create > Material
+2. Name the material (e.g., "RedMaterial")
+3. In the Inspector, click on the Albedo color picker to choose a color
+4. Drag the material from the Project window onto a primitive in the Scene view
+#### Duplicating and Arranging:
+- **Duplicate**: Select an object and press Ctrl+D (or Cmd+D on Mac)
+- **Multi-select**: Hold Ctrl (or Cmd on Mac) and click multiple objects
+- **Align**: Use the transform values in the Inspector to align objects precisely
+### 9. Saving Scenes and Projects
+Properly saving your work is crucial to avoid losing progress and to maintain an organized project.
+#### Saving Scenes:
+A scene is a collection of GameObjects that represents a level, menu, or any discrete part of your game.
+**Save Current Scene:**
+```
+File > Save
+```
+Or press Ctrl+S (Cmd+S on Mac)
+**Save Scene As:**
+```
+File > Save As...
+```
+This creates a new scene file, useful for creating variations or backups.
+**Scene File Location:**
+Scenes should be saved in your Assets/Scenes folder for organization.
+#### Creating New Scenes:
+**Create a New Scene:**
+```
+File > New Scene
+```
+This creates an empty scene with only a default directional light and a camera.
+**Scene Templates:**
+Unity provides scene templates with different lighting setups:
+```
+File > New Scene > [Select Template]
+```
+#### Saving Projects:
+Unity automatically saves your project settings and assets as you work. However, there are some best practices to follow:
+**Save Before Play Mode:**
+Always save your scene before entering Play mode, as changes made during Play mode are discarded when you exit.
+**Save Scene After Significant Changes:**
+Get in the habit of saving frequently, especially after making significant changes.
+**Project Backups:**
+Regularly create backups of your entire project folder:
+- Copy the project folder to a backup location
+- Use version control systems like Git
+- Use Unity Collaborate (available through Unity Teams)
+#### Version Control Integration:
+Unity works well with version control systems:
+1. Enable external version control in:
+```
+Edit > Project Settings > Editor > Version Control
+```
+2. Configure which files to ignore (typically Library, Temp, and Logs folders)
+3. Use the Unity-specific settings for your version control system (e.g., Git LFS for large binary files)
+### Conclusion
+In this unit, we've covered the foundational aspects of Unity development:
+1. **Unity Hub**: Managing installations and projects
+2. **Project Creation**: Setting up new 3D projects
+3. **Project Structure**: Understanding the folder organization
+4. **Editor Windows**: Navigating the Unity interface
+5. **Scene Navigation**: Moving efficiently in the 3D view
+6. **GameObjects**: Working with the basic entities
+7. **Components**: Adding functionality to GameObjects
+8. **Primitives**: Creating and manipulating basic shapes
+9. **Saving**: Properly storing your work
+These concepts form the foundation for everything else you'll do in Unity. In the next unit, we'll explore how to import and work with external assets to create more complex and visually appealing scenes.
+## Deliverable Task: Create a Simple Scene with Primitive Shapes
+In this deliverable, you will apply the foundational Unity concepts you've learned by creating a simple scene with primitive shapes. This task will help you practice navigating the Unity Editor, manipulating GameObjects, and organizing your project.
+### Task Requirements:
+1. Create a new Unity 3D project named "UnityAccelerator_Course"
+2. Set up a proper folder structure in your Assets folder:
+   - Create a "Scenes" folder
+   - Create a "Materials" folder
+3. Create a new scene named "Unit1_Scene"
+4. Construct a creative arrangement using at least three different primitive shapes
+   - Example: A simple pedestal, abstract sculpture, or basic character
+   - Use at least three different primitive types (Cube, Sphere, Cylinder, etc.)
+5. Apply different colors to your primitives by creating and assigning materials
+6. Organize your Hierarchy using empty GameObjects as containers
+7. Save your scene in the "Scenes" folder
+### Step-by-Step Instructions:
+#### 1. Create a New Unity Project:
+- Open Unity Hub
+- Click "New Project"
+- Select "3D" template (or "3D (URP)" if you prefer)
+- Name it "UnityAccelerator_Course"
+- Choose a location on your computer
+- Click "Create Project"
+#### 2. Set Up Folder Structure:
+- In the Project window, right-click in the Assets folder
+- Select Create > Folder
+- Name it "Scenes"
+- Repeat to create a "Materials" folder
+#### 3. Create a New Scene:
+- Go to File > New Scene
+- Go to File > Save As...
+- Navigate to your "Scenes" folder
+- Name it "Unit1_Scene"
+- Click "Save"
+#### 4. Create Primitive Shapes:
+- Go to GameObject > 3D Object > Cube
+- In the Inspector, set its Position to (0, 0, 0)
+- Go to GameObject > 3D Object > Sphere
+- Set its Position to (0, 1, 0)
+- Go to GameObject > 3D Object > Cylinder
+- Set its Position to (0, 2, 0)
+#### 5. Create and Apply Materials:
+- In the Project window, navigate to your "Materials" folder
+- Right-click > Create > Material
+- Name it "RedMaterial"
+- In the Inspector, click on the Albedo color picker
+- Choose a red color
+- Create two more materials with different colors (e.g., "BlueMaterial" and "GreenMaterial")
+- Select the Cube in the Hierarchy
+- Drag the "RedMaterial" from the Project window onto the Cube in the Scene view
+- Apply the other materials to the remaining primitives
+#### 6. Organize the Hierarchy:
+- Go to GameObject > Create Empty
+- Name it "Sculpture"
+- In the Hierarchy, drag the Cube, Sphere, and Cylinder onto "Sculpture" to make them children
+#### 7. Customize Your Creation:
+- Select the primitives and experiment with:
+  - Scaling them to different sizes
+  - Rotating them to interesting angles
+  - Positioning them in a visually appealing arrangement
+- Try to create something that looks intentional rather than just stacked objects
+#### 8. Save Your Scene:
+- Press Ctrl+S (or Cmd+S on Mac) to save your scene
+### Submission Guidelines:
+Your completed deliverable should include:
+- A properly structured Unity project
+- A saved scene named "Unit1_Scene"
+- At least three different primitive shapes arranged creatively
+- Custom materials applied to each primitive
+- An organized Hierarchy using empty GameObjects
+### Evaluation Criteria:
+Your submission will be evaluated based on:
+1. **Correct Implementation**: Following all the required steps
+2. **Organization**: Proper folder structure and Hierarchy organization
+3. **Creativity**: Interesting arrangement of primitive shapes
+4. **Technical Accuracy**: Correct use of the Unity Editor features
+5. **Completion**: All requirements satisfied
+### Tips for Success:
+- Take your time to explore the Unity Editor interface
+- Experiment with different primitive shapes and arrangements
+- Use the Scene view navigation tools to view your creation from different angles
+- Don't worry about making something complex—focus on learning the tools
+- Save your work frequently
+## Quiz Questions
+### Question 1: What is the primary purpose of Unity Hub?
+A) To edit 3D models before importing them into Unity
+B) To manage Unity installations, projects, and templates
+C) To optimize game performance across different platforms
+D) To connect with the Unity Asset Store
+**Correct Answer: B) To manage Unity installations, projects, and templates**
+### Question 2: Which folder in a Unity project contains all the assets you import or create?
+A) Library
+B) ProjectSettings
+C) Assets
+D) Packages
+**Correct Answer: C) Assets**
+### Question 3: Which of the following is NOT one of the main Unity Editor windows?
+A) Hierarchy
+B) Inspector
+C) Compiler
+D) Scene
+**Correct Answer: C) Compiler**
+### Question 4: What is the relationship between GameObjects and Components in Unity?
+A) GameObjects are types of Components used for visual elements only
+B) Components are containers that can hold multiple GameObjects
+C) GameObjects are containers that can have multiple Components attached to them
+D) There is no relationship; they are completely independent systems
+**Correct Answer: C) GameObjects are containers that can have multiple Components attached to them**
+### Question 5: Which of the following is NOT a property of the Transform component?
+A) Position
+B) Rotation
+C) Scale
+D) Material
+**Correct Answer: D) Material**
+### Question 6: Which keyboard shortcut is used to focus the Scene view on a selected object?
+A) F
+B) Z
+C) T
+D) V
+**Correct Answer: A) F**
+### Question 7: Which of these is the correct way to create a parent-child relationship between two GameObjects?
+A) Use the "Create Child" option in the GameObject menu
+B) Drag one GameObject onto another in the Hierarchy
+C) Select both objects and press Ctrl+G
+D) Add a "Child" component to the parent object
+**Correct Answer: B) Drag one GameObject onto another in the Hierarchy**
+### Question 8: What is the minimum number of components that every GameObject has?
+A) Zero
+B) One (Transform)
+C) Two (Transform and Mesh Filter)
+D) Three (Transform, Mesh Filter, and Mesh Renderer)
+**Correct Answer: B) One (Transform)**
+### Question 9: Which of the following is NOT a primitive shape available in Unity?
+A) Cube
+B) Sphere
+C) Pentagon
+D) Cylinder
+**Correct Answer: C) Pentagon**
+### Question 10: What is the recommended way to organize related GameObjects in the Hierarchy?
+A) Use tags to group them
+B) Use layers to categorize them
+C) Use empty GameObjects as containers/folders
+D) Prefix all related object names with the same text
+**Correct Answer: C) Use empty GameObjects as containers/folders**
