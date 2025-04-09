@@ -22,10 +22,12 @@ const ModuleDetail = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [nextModule, setNextModule] = useState<any>(null);
   const [prevModule, setPrevModule] = useState<any>(null);
+  const [contentError, setContentError] = useState<boolean>(false);
   
   useEffect(() => {
     const loadModule = async () => {
       setLoading(true);
+      setContentError(false);
       try {
         // Load the current module with content
         const moduleData = await getModuleById(moduleId);
@@ -38,6 +40,11 @@ const ModuleDetail = () => {
             variant: "destructive"
           });
           return;
+        }
+        
+        // Check if content is actually available
+        if (!moduleData.content || moduleData.content.trim() === '') {
+          setContentError(true);
         }
         
         setModule(moduleData);
@@ -57,6 +64,7 @@ const ModuleDetail = () => {
         }
       } catch (error) {
         console.error("Error loading module:", error);
+        setContentError(true);
         toast({
           title: "Failed to load module",
           description: "There was a problem loading the module content.",
@@ -147,13 +155,22 @@ const ModuleDetail = () => {
                 </div>
               </div>
               
-              {module.content ? (
+              {module.content && !contentError ? (
                 <MarkdownRenderer content={module.content} />
               ) : (
                 <div className="p-8 text-center border rounded-lg">
                   <p className="text-muted-foreground">
-                    Detailed content for this module will be available soon.
+                    {contentError 
+                      ? "We're having trouble loading this content. Please try refreshing the page."
+                      : "Detailed content for this module will be available soon."}
                   </p>
+                  <Button 
+                    variant="outline" 
+                    className="mt-4" 
+                    onClick={() => window.location.reload()}
+                  >
+                    Refresh Page
+                  </Button>
                 </div>
               )}
             </div>

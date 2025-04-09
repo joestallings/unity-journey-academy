@@ -147,15 +147,18 @@ export const getModuleById = async (id: number): Promise<Module | undefined> => 
   const moduleWithContent = { ...module };
 
   try {
-    // Load the markdown content dynamically
+    // Load the markdown content dynamically - using fetch with error handling
     const response = await fetch(`/src/data/markdown/module${id}.md`);
     if (!response.ok) {
+      console.error(`Failed to fetch module content for id ${id}: ${response.status}`);
       throw new Error(`Failed to fetch module content: ${response.status}`);
     }
     moduleWithContent.content = await response.text();
     return moduleWithContent;
   } catch (error) {
     console.error(`Error loading module content for id ${id}:`, error);
-    return module; // Return module without content in case of error
+    // Still return the module but with a friendly error message as content
+    moduleWithContent.content = `# Module ${id}: ${module.title}\n\nWe're currently experiencing issues loading this content. Please try refreshing the page or check back later.`;
+    return moduleWithContent; 
   }
 };
