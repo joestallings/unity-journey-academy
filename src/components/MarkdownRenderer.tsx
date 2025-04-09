@@ -48,9 +48,12 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
     // Convert links
     html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary underline hover:text-accent transition-colors">$1</a>');
     
-    // Convert line breaks
-    html = html.replace(/\n/g, '<br>');
-
+    // Handle line breaks - replace double newlines with paragraph breaks instead of <br> tags
+    // This is the key change to fix excessive spacing
+    html = html
+      .replace(/\n\s*\n/g, '</p><p class="my-4">') // Double newlines become paragraph breaks
+      .replace(/\n(?!\s*\n)/g, ' '); // Single newlines become spaces within paragraphs
+      
     return html;
   };
 
